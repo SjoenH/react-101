@@ -2,7 +2,15 @@
 
 A comprehensive React tutorial presentation built with [Reveal.js](https://revealjs.com/), covering fundamental React concepts based on the official React documentation.
 
-## 🚀 Quick Start
+## 🌐 View Online
+
+**Live Presentation**: [https://sjoenh.github.io/react-101/](https://sjoenh.github.io/react-101/)
+
+The presentation is automatically deployed to GitHub Pages and available online. No local setup required!
+
+## 🚀 Local Development
+
+If you want to run the presentation locally:
 
 1. Clone this repository
 2. Open a terminal and navigate to the project directory
@@ -43,11 +51,16 @@ This presentation covers the following React topics:
 - **Styling**: Dark theme with React blue (#61dafb) accents
 - **Code Examples**: Formatted JavaScript/JSX code blocks
 - **Self-contained**: All dependencies included locally (no CDN dependencies)
+- **Hosting**: Automatically deployed to GitHub Pages via GitHub Actions
+- **CI/CD**: GitHub Actions workflow for continuous deployment
 
 ## 📁 File Structure
 
 ```
 .
+├── .github/
+│   └── workflows/
+│       └── deploy.yml       # GitHub Pages deployment workflow
 ├── index.html              # Main presentation file
 ├── reveal.js/
 │   ├── reveal.css         # Presentation styles
