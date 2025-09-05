@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 101 - Tutorial Presentation</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="reveal.js/reveal.css">
+    
+    <style>
+        .reveal .slides section {
+            text-align: left;
+        }
+        .reveal .slides section.center {
+            text-align: center;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-align: center;
+        }
+        .reveal pre {
+            font-size: 0.8em;
+        }
+        .reveal code {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 0.2em 0.4em;
+            border-radius: 0.3em;
+        }
+        .react-blue {
+            color: #61dafb;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- Title Slide -->
+            <section class="center">
+                <h1 class="react-blue">React 101</h1>
+                <h3>A Beginner's Guide to React</h3>
+                <p>
+                    <small>Based on the official React documentation at <a href="https://react.dev/learn">react.dev/learn</a></small>
+                </p>
+            </section>
+
+            <!-- What is React? -->
+            <section>
+                <h2 class="react-blue">What is React?</h2>
+                <ul>
+                    <li>A JavaScript library for building user interfaces</li>
+                    <li>Developed by Facebook (now Meta)</li>
+                    <li>Component-based architecture</li>
+                    <li>Declarative programming paradigm</li>
+                    <li>Virtual DOM for efficient updates</li>
+                </ul>
+            </section>
+
+            <!-- Why React? -->
+            <section>
+                <h2 class="react-blue">Why React?</h2>
+                <ul>
+                    <li><strong>Reusable Components:</strong> Build encapsulated components that manage their own state</li>
+                    <li><strong>Virtual DOM:</strong> Efficient updates and rendering</li>
+                    <li><strong>Large Ecosystem:</strong> Rich ecosystem of libraries and tools</li>
+                    <li><strong>Strong Community:</strong> Active community and excellent documentation</li>
+                    <li><strong>Job Market:</strong> High demand for React developers</li>
+                </ul>
+            </section>
+
+            <!-- Your First Component -->
+            <section>
+                <h2 class="react-blue">Your First Component</h2>
+                <p>Components are the building blocks of React applications.</p>
+                <pre><code class="language-jsx">
+function Welcome() {
+  return &lt;h1&gt;Hello, World!&lt;/h1&gt;;
+}
+
+// Or as an arrow function
+const Welcome = () =&gt; {
+  return &lt;h1&gt;Hello, World!&lt;/h1&gt;;
+};
+                </code></pre>
+                <p><small>Components must start with a capital letter!</small></p>
+            </section>
+
+            <!-- JSX Introduction -->
+            <section>
+                <h2 class="react-blue">JSX - JavaScript XML</h2>
+                <p>JSX allows you to write HTML-like syntax in JavaScript</p>
+                <pre><code class="language-jsx">
+const element = &lt;h1&gt;Hello, World!&lt;/h1&gt;;
+
+// JSX with expressions
+const name = 'React';
+const greeting = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+
+// JSX attributes
+const image = &lt;img src="logo.png" alt="React Logo" /&gt;;
+                </code></pre>
+            </section>
+
+            <!-- JSX Rules -->
+            <section>
+                <h2 class="react-blue">JSX Rules</h2>
+                <ul>
+                    <li><strong>Return a single root element</strong> (or use React.Fragment)</li>
+                    <li><strong>Close all tags</strong> (<code>&lt;img /&gt;</code>, <code>&lt;br /&gt;</code>)</li>
+                    <li><strong>Use camelCase</strong> for attributes (<code>className</code>, <code>onClick</code>)</li>
+                </ul>
+                <pre><code class="language-jsx">
+// Good
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;h1 className="title"&gt;Welcome&lt;/h1&gt;
+      &lt;img src="logo.png" alt="Logo" /&gt;
+    &lt;/div&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- Displaying Data -->
+            <section>
+                <h2 class="react-blue">Displaying Data</h2>
+                <p>Use curly braces <code>{}</code> to embed JavaScript expressions in JSX</p>
+                <pre><code class="language-jsx">
+function Profile() {
+  const user = {
+    name: 'Sarah Connor',
+    imageUrl: 'https://example.com/sarah.jpg'
+  };
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;{user.name}&lt;/h1&gt;
+      &lt;img src={user.imageUrl} alt={user.name} /&gt;
+      &lt;p&gt;Welcome back!&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- Conditional Rendering -->
+            <section>
+                <h2 class="react-blue">Conditional Rendering</h2>
+                <p>Show different content based on conditions</p>
+                <pre><code class="language-jsx">
+function Greeting({ isLoggedIn }) {
+  if (isLoggedIn) {
+    return &lt;h1&gt;Welcome back!&lt;/h1&gt;;
+  }
+  return &lt;h1&gt;Please sign in.&lt;/h1&gt;;
+}
+
+// Using ternary operator
+function Status({ isOnline }) {
+  return (
+    &lt;div&gt;
+      User is {isOnline ? 'online' : 'offline'}
+    &lt;/div&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- Rendering Lists -->
+            <section>
+                <h2 class="react-blue">Rendering Lists</h2>
+                <p>Use <code>map()</code> to render arrays of data</p>
+                <pre><code class="language-jsx">
+function TodoList() {
+  const todos = [
+    { id: 1, text: 'Learn React' },
+    { id: 2, text: 'Build an app' },
+    { id: 3, text: 'Deploy to production' }
+  ];
+
+  return (
+    &lt;ul&gt;
+      {todos.map(todo =&gt; (
+        &lt;li key={todo.id}&gt;{todo.text}&lt;/li&gt;
+      ))}
+    &lt;/ul&gt;
+  );
+}
+                </code></pre>
+                <p><small>Always provide a unique <code>key</code> prop!</small></p>
+            </section>
+
+            <!-- Props -->
+            <section>
+                <h2 class="react-blue">Props - Passing Data</h2>
+                <p>Props allow you to pass data from parent to child components</p>
+                <pre><code class="language-jsx">
+function Button({ text, onClick, type = "button" }) {
+  return (
+    &lt;button type={type} onClick={onClick}&gt;
+      {text}
+    &lt;/button&gt;
+  );
+}
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button text="Click me!" onClick={() =&gt; alert('Clicked!')} /&gt;
+      &lt;Button text="Submit" type="submit" onClick={handleSubmit} /&gt;
+    &lt;/div&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- Event Handling -->
+            <section>
+                <h2 class="react-blue">Handling Events</h2>
+                <p>React events are named using camelCase</p>
+                <pre><code class="language-jsx">
+function Button() {
+  function handleClick(e) {
+    e.preventDefault();
+    alert('Button clicked!');
+  }
+
+  return (
+    &lt;button onClick={handleClick}&gt;
+      Click me
+    &lt;/button&gt;
+  );
+}
+
+// Inline event handler
+function App() {
+  return (
+    &lt;button onClick={() =&gt; alert('Hello!')}&gt;
+      Say Hello
+    &lt;/button&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- State Introduction -->
+            <section>
+                <h2 class="react-blue">State - Component Memory</h2>
+                <p>State allows components to "remember" information and change over time</p>
+                <pre><code class="language-jsx">
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- useState Hook -->
+            <section>
+                <h2 class="react-blue">useState Hook</h2>
+                <p>The <code>useState</code> hook lets you add state to function components</p>
+                <pre><code class="language-jsx">
+import { useState } from 'react';
+
+function Form() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+
+  return (
+    &lt;form&gt;
+      &lt;input 
+        value={name}
+        onChange={(e) =&gt; setName(e.target.value)}
+        placeholder="Your name"
+      /&gt;
+      &lt;input 
+        value={email}
+        onChange={(e) =&gt; setEmail(e.target.value)}
+        placeholder="Your email"
+      /&gt;
+      &lt;p&gt;Hello, {name}! Your email is {email}&lt;/p&gt;
+    &lt;/form&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- State Updates -->
+            <section>
+                <h2 class="react-blue">State Updates</h2>
+                <ul>
+                    <li>State updates are <strong>asynchronous</strong></li>
+                    <li>React may <strong>batch</strong> multiple state updates</li>
+                    <li>Use functional updates for state that depends on previous state</li>
+                </ul>
+                <pre><code class="language-jsx">
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  // Functional update - recommended for dependent state
+  const increment = () =&gt; setCount(prev =&gt; prev + 1);
+  
+  // Multiple updates
+  const incrementTwice = () =&gt; {
+    setCount(prev =&gt; prev + 1);
+    setCount(prev =&gt; prev + 1);
+  };
+
+  return (
+    &lt;button onClick={incrementTwice}&gt;
+      Count: {count}
+    &lt;/button&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- useEffect Hook -->
+            <section>
+                <h2 class="react-blue">useEffect Hook</h2>
+                <p>Handle side effects like API calls, subscriptions, and timers</p>
+                <pre><code class="language-jsx">
+import { useState, useEffect } from 'react';
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() =&gt; {
+    // Fetch user data when component mounts or userId changes
+    fetch(`/api/users/${userId}`)
+      .then(response =&gt; response.json())
+      .then(userData =&gt; setUser(userData));
+  }, [userId]); // Dependency array
+
+  if (!user) return &lt;div&gt;Loading...&lt;/div&gt;;
+
+  return &lt;div&gt;Hello, {user.name}!&lt;/div&gt;;
+}
+                </code></pre>
+            </section>
+
+            <!-- useEffect Cleanup -->
+            <section>
+                <h2 class="react-blue">useEffect Cleanup</h2>
+                <p>Clean up subscriptions and prevent memory leaks</p>
+                <pre><code class="language-jsx">
+import { useState, useEffect } from 'react';
+
+function Timer() {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() =&gt; {
+    const timer = setInterval(() =&gt; {
+      setTime(new Date());
+    }, 1000);
+
+    // Cleanup function
+    return () =&gt; {
+      clearInterval(timer);
+    };
+  }, []); // Empty dependency array - runs once
+
+  return &lt;div&gt;Current time: {time.toLocaleTimeString()}&lt;/div&gt;;
+}
+                </code></pre>
+            </section>
+
+            <!-- Component Composition -->
+            <section>
+                <h2 class="react-blue">Component Composition</h2>
+                <p>Build complex UIs by composing simple components</p>
+                <pre><code class="language-jsx">
+function Avatar({ user }) {
+  return &lt;img src={user.avatar} alt={user.name} /&gt;;
+}
+
+function UserInfo({ user }) {
+  return (
+    &lt;div&gt;
+      &lt;Avatar user={user} /&gt;
+      &lt;h3&gt;{user.name}&lt;/h3&gt;
+      &lt;p&gt;{user.email}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+function UserCard({ user, onEdit }) {
+  return (
+    &lt;div className="card"&gt;
+      &lt;UserInfo user={user} /&gt;
+      &lt;button onClick={() =&gt; onEdit(user.id)}&gt;
+        Edit Profile
+      &lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+                </code></pre>
+            </section>
+
+            <!-- Thinking in React -->
+            <section>
+                <h2 class="react-blue">Thinking in React</h2>
+                <ol>
+                    <li><strong>Break the UI into components</strong> - Identify component boundaries</li>
+                    <li><strong>Build a static version</strong> - No state, just props</li>
+                    <li><strong>Identify state</strong> - What data changes over time?</li>
+                    <li><strong>Identify where state should live</strong> - Common parent component</li>
+                    <li><strong>Add inverse data flow</strong> - Pass callbacks down for state updates</li>
+                </ol>
+            </section>
+
+            <!-- Best Practices -->
+            <section>
+                <h2 class="react-blue">Best Practices</h2>
+                <ul>
+                    <li><strong>Keep components small and focused</strong></li>
+                    <li><strong>Use descriptive names</strong> for components and props</li>
+                    <li><strong>Extract reusable logic</strong> into custom hooks</li>
+                    <li><strong>Use TypeScript</strong> for better type safety</li>
+                    <li><strong>Follow the React DevTools</strong> for debugging</li>
+                    <li><strong>Test your components</strong> with Jest and React Testing Library</li>
+                </ul>
+            </section>
+
+            <!-- Next Steps -->
+            <section>
+                <h2 class="react-blue">Next Steps</h2>
+                <ul>
+                    <li><strong>React Router:</strong> Client-side routing for SPAs</li>
+                    <li><strong>State Management:</strong> Redux, Zustand, or Context API</li>
+                    <li><strong>Styling:</strong> CSS Modules, Styled Components, or Tailwind CSS</li>
+                    <li><strong>Forms:</strong> Formik, React Hook Form</li>
+                    <li><strong>Testing:</strong> Jest, React Testing Library, Cypress</li>
+                    <li><strong>Build Tools:</strong> Vite, Create React App, Next.js</li>
+                </ul>
+            </section>
+
+            <!-- Resources -->
+            <section>
+                <h2 class="react-blue">Useful Resources</h2>
+                <ul>
+                    <li><a href="https://react.dev/" target="_blank">Official React Documentation</a></li>
+                    <li><a href="https://react.dev/learn" target="_blank">React Tutorial</a></li>
+                    <li><a href="https://create-react-app.dev/" target="_blank">Create React App</a></li>
+                    <li><a href="https://nextjs.org/" target="_blank">Next.js Framework</a></li>
+                    <li><a href="https://testing-library.com/docs/react-testing-library/intro/" target="_blank">React Testing Library</a></li>
+                    <li><a href="https://reactrouter.com/" target="_blank">React Router</a></li>
+                </ul>
+            </section>
+
+            <!-- Thank You -->
+            <section class="center">
+                <h1 class="react-blue">Thank You!</h1>
+                <h3>Happy React Coding! 🚀</h3>
+                <p>
+                    <small>Start building amazing user interfaces with React</small>
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <!-- Reveal.js JavaScript -->
+    <script src="reveal.js/reveal.js"></script>
+</body>
+</html>
